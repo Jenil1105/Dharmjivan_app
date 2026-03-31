@@ -1,44 +1,78 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
+import React, { useEffect, useState } from 'react';
+import { Image, SafeAreaView, StatusBar, StyleSheet, Text, View } from 'react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-import { NewAppScreen } from '@react-native/new-app-screen';
-import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
-import {
-  SafeAreaProvider,
-  useSafeAreaInsets,
-} from 'react-native-safe-area-context';
+const SplashScreen = () => {
+  return (
+    <View style={styles.splashContainer}>
+      <Image
+        source={require('./assets/logo.png')}
+        style={styles.logo}
+        resizeMode="contain"
+      />
+      <Text style={styles.loadingText}>Loading...</Text>
+    </View>
+  );
+};
+
+const DashboardScreen = () => {
+  return (
+    <SafeAreaView style={styles.dashboardContainer}>
+      <Text style={styles.dashboardTitle}>Dashboard</Text>
+      <Text style={styles.dashboardSubtitle}>Welcome! Content will be added soon.</Text>
+    </SafeAreaView>
+  );
+};
 
 function App() {
-  const isDarkMode = useColorScheme() === 'dark';
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 3000);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <SafeAreaProvider>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <AppContent />
+      <StatusBar barStyle="dark-content" backgroundColor="#ffffff" />
+      {isLoading ? <SplashScreen /> : <DashboardScreen />}
     </SafeAreaProvider>
   );
 }
 
-function AppContent() {
-  const safeAreaInsets = useSafeAreaInsets();
-
-  return (
-    <View style={styles.container}>
-      <NewAppScreen
-        templateFileName="App.tsx"
-        safeAreaInsets={safeAreaInsets}
-      />
-    </View>
-  );
-}
-
 const styles = StyleSheet.create({
-  container: {
+  splashContainer: {
     flex: 1,
+    backgroundColor: '#ffffff',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  logo: {
+    width: 220,
+    height: 220,
+    marginBottom: 16,
+  },
+  loadingText: {
+    fontSize: 18,
+    color: '#333333',
+    marginTop: 8,
+  },
+  dashboardContainer: {
+    flex: 1,
+    backgroundColor: '#ffffff',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 24,
+  },
+  dashboardTitle: {
+    fontSize: 28,
+    fontWeight: '700',
+    color: '#171717',
+    marginBottom: 12,
+  },
+  dashboardSubtitle: {
+    fontSize: 16,
+    color: '#555555',
   },
 });
 
