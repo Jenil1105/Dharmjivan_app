@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Image, SafeAreaView, StatusBar, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { DashboardScreen } from './pages/admin';
+
+type ActiveView = 'dashboard' | 'add-item' | 'items';
 
 const SplashScreen = () => {
   return (
@@ -15,17 +18,9 @@ const SplashScreen = () => {
   );
 };
 
-const DashboardScreen = () => {
-  return (
-    <SafeAreaView style={styles.dashboardContainer}>
-      <Text style={styles.dashboardTitle}>Dashboard</Text>
-      <Text style={styles.dashboardSubtitle}>Welcome! Content will be added soon.</Text>
-    </SafeAreaView>
-  );
-};
-
 function App() {
   const [isLoading, setIsLoading] = useState(true);
+  const [activeView, setActiveView] = useState<ActiveView>('dashboard');
 
   useEffect(() => {
     const timer = setTimeout(() => setIsLoading(false), 3000);
@@ -35,7 +30,7 @@ function App() {
   return (
     <SafeAreaProvider>
       <StatusBar barStyle="dark-content" backgroundColor="#ffffff" />
-      {isLoading ? <SplashScreen /> : <DashboardScreen />}
+      {isLoading ? <SplashScreen /> : <DashboardScreen setActiveView={setActiveView} />}
     </SafeAreaProvider>
   );
 }
