@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from 'react'
 import {
   View,
   ScrollView,
   StyleSheet,
   SafeAreaView,
+  TouchableOpacity,
+  Text,
+  Image,
   Alert,
-  ActivityIndicator,
 } from 'react-native'
+import React, { useState, useEffect } from 'react'
 import StatCard from '../../components/admin/StatCard'
 import OperationsPulse from '../../components/admin/OperationsPulse'
 import QuickActions from '../../components/admin/QuickActions'
@@ -45,7 +47,7 @@ const DashboardScreen: React.FC<DashboardScreenProps> = ({ setActiveView }) => {
     topCategory: 'No data yet',
     averagePrice: 0,
   })
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState<boolean>(true)
 
   useEffect(() => {
     fetchStats()
@@ -142,6 +144,19 @@ const DashboardScreen: React.FC<DashboardScreenProps> = ({ setActiveView }) => {
 
   return (
     <SafeAreaView style={styles.container}>
+      {/* Navigation Bar */}
+      <View style={styles.navBar}>
+        <Image source={require('../../assets/logo.png')} style={styles.navLogo} />
+        <View style={styles.navIcons}>
+          <TouchableOpacity onPress={() => setActiveView('add-item')} style={styles.navIcon}>
+            <Text style={styles.iconText}>+</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => setActiveView('items')} style={styles.navIcon}>
+            <Text style={styles.iconText}>📋</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.scrollContent}
@@ -179,6 +194,32 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#F8FAFC',
+  },
+  navBar: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+    backgroundColor: '#FFFFFF',
+    borderBottomWidth: 1,
+    borderBottomColor: '#E2E8F0',
+  },
+  navLogo: {
+    width: 40,
+    height: 40,
+    resizeMode: 'contain',
+  },
+  navIcons: {
+    flexDirection: 'row',
+  },
+  navIcon: {
+    marginLeft: 16,
+    padding: 8,
+  },
+  iconText: {
+    fontSize: 20,
+    color: '#EF4444',
   },
   scrollContent: {
     paddingHorizontal: 16,

@@ -53,7 +53,7 @@ const OperationsPulse: React.FC<OperationsPulseProps> = ({
       <View style={styles.header}>
         <View>
           <Text style={styles.sectionLabel}>Operations Pulse</Text>
-          <Text style={styles.sectionTitle}>What needs attention today</Text>
+          <Text style={styles.sectionTitle}>What needs attention</Text>
         </View>
         <View style={styles.badge}>
           <Text style={styles.badgeText}>Live summary</Text>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Image, SafeAreaView, StatusBar, StyleSheet, Text, View } from 'react-native';
+import { Image, StatusBar, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { DashboardScreen } from './pages/admin';
+import { DashboardScreen, AddItemScreen } from './pages/admin';
 
 type ActiveView = 'dashboard' | 'add-item' | 'items';
 
@@ -30,7 +30,15 @@ function App() {
   return (
     <SafeAreaProvider>
       <StatusBar barStyle="dark-content" backgroundColor="#ffffff" />
-      {isLoading ? <SplashScreen /> : <DashboardScreen setActiveView={setActiveView} />}
+      {isLoading ? (
+        <SplashScreen />
+      ) : activeView === 'dashboard' ? (
+        <DashboardScreen setActiveView={setActiveView} />
+      ) : activeView === 'add-item' ? (
+        <AddItemScreen setActiveView={setActiveView} />
+      ) : (
+        <DashboardScreen setActiveView={setActiveView} />
+      )}
     </SafeAreaProvider>
   );
 }
