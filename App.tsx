@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Image, StatusBar, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { DashboardScreen, AddItemScreen } from './pages/admin';
+import { DashboardScreen, AddItemScreen, ViewItemsScreen } from './pages/admin';
 
-type ActiveView = 'dashboard' | 'add-item' | 'items';
+type ActiveView = 'dashboard' | 'add-item' | 'items' | 'edit-item';
 
 const SplashScreen = () => {
   return (
@@ -21,6 +21,7 @@ const SplashScreen = () => {
 function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [activeView, setActiveView] = useState<ActiveView>('dashboard');
+  const [selectedItem, setSelectedItem] = useState<any>(null);
 
   useEffect(() => {
     const timer = setTimeout(() => setIsLoading(false), 3000);
@@ -36,6 +37,10 @@ function App() {
         <DashboardScreen setActiveView={setActiveView} />
       ) : activeView === 'add-item' ? (
         <AddItemScreen setActiveView={setActiveView} />
+      ) : activeView === 'edit-item' ? (
+        <AddItemScreen setActiveView={setActiveView} mode="edit" initialData={selectedItem} />
+      ) : activeView === 'items' ? (
+        <ViewItemsScreen setActiveView={setActiveView} setSelectedItem={setSelectedItem} />
       ) : (
         <DashboardScreen setActiveView={setActiveView} />
       )}

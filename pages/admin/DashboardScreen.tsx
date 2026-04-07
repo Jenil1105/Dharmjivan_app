@@ -152,7 +152,11 @@ const DashboardScreen: React.FC<DashboardScreenProps> = ({ setActiveView }) => {
             <Text style={styles.iconText}>+</Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => setActiveView('items')} style={styles.navIcon}>
-            <Text style={styles.iconText}>📋</Text>
+            <View style={styles.menuIconContainer}>
+              <View style={styles.menuLine} />
+              <View style={styles.menuLine} />
+              <View style={styles.menuLine} />
+            </View>
           </TouchableOpacity>
         </View>
       </View>
@@ -212,14 +216,32 @@ const styles = StyleSheet.create({
   },
   navIcons: {
     flexDirection: 'row',
+    alignItems: 'center',
   },
   navIcon: {
-    marginLeft: 16,
+    marginLeft: 12,
     padding: 8,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   iconText: {
-    fontSize: 20,
+    fontSize: 26,
     color: '#EF4444',
+    fontWeight: '300',
+    lineHeight: 26,
+    textAlignVertical: 'center',
+  },
+  menuIconContainer: {
+    width: 20,
+    height: 16,
+    justifyContent: 'space-between',
+    paddingVertical: 1,
+  },
+  menuLine: {
+    width: 20,
+    height: 2,
+    backgroundColor: '#EF4444',
+    borderRadius: 2,
   },
   scrollContent: {
     paddingHorizontal: 16,

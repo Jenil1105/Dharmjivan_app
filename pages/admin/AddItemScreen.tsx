@@ -38,14 +38,14 @@ const AddItemScreen: React.FC<AddItemScreenProps> = ({
   const [formData, setFormData] = useState(
     initialData
       ? {
-          name: initialData.name || '',
-          description: initialData.description || '',
-          price: initialData.price || '',
-          discounted_price: initialData.discounted_price || '',
-          available_quantity: initialData.available_quantity || '',
-          category: initialData.category || '',
-          image_url: initialData.image_url || '',
-        }
+        name: initialData.name || '',
+        description: initialData.description || '',
+        price: initialData.price || '',
+        discounted_price: initialData.discounted_price || '',
+        available_quantity: initialData.available_quantity || '',
+        category: initialData.category || '',
+        image_url: initialData.image_url || '',
+      }
       : initialFormState
   )
   const [loading, setLoading] = useState(false)
@@ -182,7 +182,7 @@ const AddItemScreen: React.FC<AddItemScreenProps> = ({
                 />
               </View>
               <View style={styles.inputContainer}>
-                <Text style={styles.label}>Available quantity</Text>
+                <Text style={styles.label}>Available Qty.</Text>
                 <TextInput
                   style={styles.input}
                   value={formData.available_quantity}
@@ -217,8 +217,8 @@ const AddItemScreen: React.FC<AddItemScreenProps> = ({
                       ? 'Updating item...'
                       : 'Saving item...'
                     : mode === 'edit'
-                    ? 'Update item'
-                    : 'Publish item'}
+                      ? 'Update item'
+                      : 'Publish item'}
                 </Text>
               </TouchableOpacity>
               {mode === 'edit' && (
@@ -330,6 +330,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: '#334155',
     marginBottom: 8,
+    paddingTop: 8
   },
   input: {
     borderWidth: 1,
