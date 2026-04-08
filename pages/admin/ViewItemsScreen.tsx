@@ -32,7 +32,7 @@ const ViewItemsScreen: React.FC<ViewItemsScreenProps> = ({
 
   const fetchItems = async () => {
     try {
-      const response = await fetch('http://localhost:3000/items');
+      const response = await fetch('http://ec2-52-66-25-4.ap-south-1.compute.amazonaws.com:3000/items');
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
@@ -56,7 +56,7 @@ const ViewItemsScreen: React.FC<ViewItemsScreenProps> = ({
           style: 'destructive',
           onPress: async () => {
             try {
-              const response = await fetch(`http://localhost:3000/items/${id}`, {
+              const response = await fetch(`http://ec2-52-66-25-4.ap-south-1.compute.amazonaws.com:3000/items/${id}`, {
                 method: 'DELETE',
               });
               if (!response.ok) {

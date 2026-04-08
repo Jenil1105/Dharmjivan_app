@@ -64,7 +64,7 @@ const DashboardScreen: React.FC<DashboardScreenProps> = ({ setActiveView }) => {
   const fetchStats = async () => {
     try {
       // Replace with your actual API endpoint
-      const response = await fetch('http://localhost:3000/items')
+      const response = await fetch('http://ec2-52-66-25-4.ap-south-1.compute.amazonaws.com:3000/items')
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`)
       }

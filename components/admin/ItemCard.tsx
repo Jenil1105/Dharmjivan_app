@@ -54,10 +54,10 @@ const ItemCard: React.FC<ItemCardProps> = ({ item, onEdit, onDelete }) => {
         </Text>
 
         <View style={styles.statsRow}>
-          <Text style={styles.price}>{formatCurrency(item.price || 0)}</Text>
+          <Text style={styles.price}>{formatCurrency(item.discounted_price || 0)}</Text>
           {isDiscounted && (
             <Text style={styles.discountedPrice}>
-              {formatCurrency(item.discounted_price || 0)}
+              {formatCurrency(item.price || 0)}
             </Text>
           )}
         </View>

@@ -71,8 +71,8 @@ const AddItemScreen: React.FC<AddItemScreenProps> = ({
       }
 
       const url = mode === 'edit' && initialData?._id
-        ? `http://localhost:3000/items/${initialData._id}`
-        : 'http://localhost:3000/items'
+        ? `http://ec2-52-66-25-4.ap-south-1.compute.amazonaws.com:3000/items/${initialData._id}`
+        : 'http://ec2-52-66-25-4.ap-south-1.compute.amazonaws.com:3000/items'
 
       const method = mode === 'edit' ? 'PUT' : 'POST'
 
