@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { Image, StatusBar, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { DashboardScreen, AddItemScreen, ViewItemsScreen } from './pages/admin';
+import { LoginScreen, SignupScreen } from './pages/auth';
+import { LandingScreen } from './pages/customer';
 
-type ActiveView = 'dashboard' | 'add-item' | 'items' | 'edit-item';
+type ActiveView = 'login' | 'signup' | 'landing' | 'dashboard' | 'add-item' | 'items' | 'edit-item';
 
 const SplashScreen = () => {
   return (
@@ -20,7 +22,7 @@ const SplashScreen = () => {
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
-  const [activeView, setActiveView] = useState<ActiveView>('dashboard');
+  const [activeView, setActiveView] = useState<ActiveView>('login');
   const [selectedItem, setSelectedItem] = useState<any>(null);
 
   useEffect(() => {
@@ -33,6 +35,12 @@ function App() {
       <StatusBar barStyle="dark-content" backgroundColor="#ffffff" />
       {isLoading ? (
         <SplashScreen />
+      ) : activeView === 'login' ? (
+        <LoginScreen setActiveView={setActiveView} />
+      ) : activeView === 'signup' ? (
+        <SignupScreen setActiveView={setActiveView} />
+      ) : activeView === 'landing' ? (
+        <LandingScreen setActiveView={setActiveView} />
       ) : activeView === 'dashboard' ? (
         <DashboardScreen setActiveView={setActiveView} />
       ) : activeView === 'add-item' ? (
@@ -42,7 +50,7 @@ function App() {
       ) : activeView === 'items' ? (
         <ViewItemsScreen setActiveView={setActiveView} setSelectedItem={setSelectedItem} />
       ) : (
-        <DashboardScreen setActiveView={setActiveView} />
+        <LoginScreen setActiveView={setActiveView} />
       )}
     </SafeAreaProvider>
   );

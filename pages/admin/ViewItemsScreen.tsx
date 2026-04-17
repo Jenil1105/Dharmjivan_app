@@ -10,6 +10,7 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import ItemCard from '../../components/admin/ItemCard';
+import { API_BASE_URL } from '../../config';
 
 type ActiveView = 'dashboard' | 'add-item' | 'items' | 'edit-item';
 
@@ -32,7 +33,7 @@ const ViewItemsScreen: React.FC<ViewItemsScreenProps> = ({
 
   const fetchItems = async () => {
     try {
-      const response = await fetch('http://ec2-52-66-25-4.ap-south-1.compute.amazonaws.com:3000/items');
+      const response = await fetch(`${API_BASE_URL}/items`);
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
@@ -56,7 +57,7 @@ const ViewItemsScreen: React.FC<ViewItemsScreenProps> = ({
           style: 'destructive',
           onPress: async () => {
             try {
-              const response = await fetch(`http://ec2-52-66-25-4.ap-south-1.compute.amazonaws.com:3000/items/${id}`, {
+              const response = await fetch(`${API_BASE_URL}/items/${id}`, {
                 method: 'DELETE',
               });
               if (!response.ok) {

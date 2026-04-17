@@ -13,6 +13,7 @@ import StatCard from '../../components/admin/StatCard'
 import OperationsPulse from '../../components/admin/OperationsPulse'
 import QuickActions from '../../components/admin/QuickActions'
 import LoadingState from '../../components/admin/LoadingState'
+import { API_BASE_URL } from '../../config'
 
 type ActiveView = 'dashboard' | 'add-item' | 'items';
 
@@ -64,7 +65,7 @@ const DashboardScreen: React.FC<DashboardScreenProps> = ({ setActiveView }) => {
   const fetchStats = async () => {
     try {
       // Replace with your actual API endpoint
-      const response = await fetch('http://ec2-52-66-25-4.ap-south-1.compute.amazonaws.com:3000/items')
+      const response = await fetch(`${API_BASE_URL}/items`)
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`)
       }
